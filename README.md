@@ -6,7 +6,7 @@
 
 **Agentic RevOps Workflow Framework — Google Workspace, $0 infrastructure, production-grade.**
 
-[![Version](https://img.shields.io/badge/version-5.4_stable-blue)](https://github.com/stachurskipiotr/kitsune-os)
+[![Version](https://img.shields.io/badge/version-5.4_stable-blue)](https://piotr-stachurski.github.io/Kitsune-OS/)
 [![Stack](https://img.shields.io/badge/stack-Google_Apps_Script-orange)](https://developers.google.com/apps-script)
 [![AI](https://img.shields.io/badge/AI-Gemini_3_Flash_%7C_2.5_Pro_fallback-green)](https://ai.google.dev)
 [![Infra](https://img.shields.io/badge/infrastructure-%240-brightgreen)](https://workspace.google.com)
