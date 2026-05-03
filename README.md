@@ -162,10 +162,10 @@ Zero hardcoded secrets. API keys live in `PropertiesService.getScriptProperties(
 | | |
 |---|---|
 | Infrastructure | **$0** — native Google Workspace, no servers, no SaaS |
-| Per full analysis (Stage 1 + Stage 2 + archive) | **~4 gr PLN (~$0.01)** — measured in production, Gemini 3 Flash PAYG |
-| Previous architecture (3-node Stage 2) | ~20 gr PLN (~$0.05) |
-| 200 analyses/month | **~10 PLN (~$2.50)** |
-| Comparable SaaS (Teal, Jobscan, Huntr) | 30–150 PLN/month (~$7–$38) |
+| Per full analysis (Stage 1 + Stage 2 + archive) | **≈4 gr PLN (≈$0.01)** — measured in production, Gemini 3 Flash PAYG |
+| Previous architecture (3-node Stage 2) | ≈20 gr PLN (≈$0.06) |
+| 200 analyses/month | **≈10 PLN (≈$2.50)** |
+| Comparable SaaS (Teal, Jobscan, Huntr) | 30–150 PLN/month (≈$7–$38) |
 
 ---
 
