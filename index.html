@@ -223,6 +223,78 @@
     .ft{flex-direction:column;gap:10px;text-align:center}
     .nav-links{display:none}
   }
+
+  /* === SCREENSHOT THUMBNAILS === */
+.screenshot-thumb {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border-bottom: 1px solid var(--border);
+  cursor: zoom-in;
+  transition: opacity 0.2s;
+}
+.screenshot-thumb:hover {
+  opacity: 0.85;
+}
+
+/* === LIGHTBOX === */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+  padding: 40px;
+  backdrop-filter: blur(8px);
+}
+.lightbox-overlay.active {
+  display: flex;
+  animation: lightboxFadeIn 0.25s ease-out;
+}
+.lightbox-overlay img {
+  max-width: 95%;
+  max-height: 95%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+}
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  font-size: 32px;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s;
+}
+.lightbox-close:hover {
+  color: var(--white);
+}
+.lightbox-caption {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 </style>
 </head>
 <body>
@@ -518,7 +590,8 @@
         <img src="assets/screenshot-01-dashboard.png"
              alt="Kitsune Dashboard V6.0 — KPI grid, Status/SLA table, real-time filtering"
              loading="lazy"
-             style="width:100%; display:block; border-bottom: 1px solid var(--border);">
+             class="screenshot-thumb"
+             onclick="openLightbox(this)">
         <div style="padding: 20px;">
           <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); margin-bottom:8px;">Dashboard V6.0</div>
           <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">SSoT-Driven Operations Console</div>
@@ -530,7 +603,8 @@
         <img src="assets/screenshot-02-deep-dive.png"
              alt="Kitsune Main App — Stage 2 Cognitive Deep Dive output with bsBingo, gapAnalysis, redFlags"
              loading="lazy"
-             style="width:100%; display:block; border-bottom: 1px solid var(--border);">
+             class="screenshot-thumb"
+             onclick="openLightbox(this)">
         <div style="padding: 20px;">
           <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:8px;">Main App · Stage 2</div>
           <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Cognitive Deep Dive</div>
@@ -542,7 +616,8 @@
         <img src="assets/screenshot-03-gmail-labels.png"
              alt="Gmail Inbox Zero — Kitsune labels structure with Recruitment, Orphan, Unrelated"
              loading="lazy"
-             style="width:100%; display:block; border-bottom: 1px solid var(--border);">
+             class="screenshot-thumb"
+             onclick="openLightbox(this)">
         <div style="padding: 20px;">
           <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:8px;">Gmail Scanner V6.1</div>
           <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Inbox Zero Discipline</div>
@@ -554,7 +629,8 @@
         <img src="assets/screenshot-04-ssot-sheet.png"
              alt="Google Sheet SSoT Master Log — 11-column schema, status validation, color-coded states"
              loading="lazy"
-             style="width:100%; display:block; border-bottom: 1px solid var(--border);">
+             class="screenshot-thumb"
+             onclick="openLightbox(this)">
         <div style="padding: 20px;">
           <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:8px;">Persistence Layer</div>
           <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">SSoT Master Log</div>
@@ -625,6 +701,35 @@
     if(el.isIntersecting) el.target.classList.add('visible');
   }), {threshold:.08, rootMargin:'0px 0px -30px 0px'});
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // === LIGHTBOX HANDLERS ===
+  function openLightbox(img) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const caption = document.getElementById('lightbox-caption');
+    
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    caption.textContent = img.alt;
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
 </script>
+  
+  <!-- LIGHTBOX OVERLAY -->
+<div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+  <span class="lightbox-close">×  CLOSE</span>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
 </body>
 </html>
