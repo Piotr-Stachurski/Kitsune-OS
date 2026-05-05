@@ -250,7 +250,7 @@
     <div class="hero-grid"></div>
     <div class="hero-layout">
       <div>
-        <p class="hero-eyebrow">Case Study — Agentic RevOps Architecture V5.4</p>
+        <p class="hero-eyebrow">Case Study — Agentic RevOps Architecture V6.1</p>
         <h1 class="hero-title"><em>Kitsune</em>-OS</h1>
         <p class="hero-name"><strong>Piotr Stachurski</strong> · Business Operations Manager · RevOps Architect</p>
         <div class="hero-stats">
@@ -329,7 +329,7 @@
     <div class="arch-wrap reveal">
       <div class="arch-bar">
         <div class="dot dot-r"></div><div class="dot dot-o"></div><div class="dot dot-g"></div>
-        <span class="arch-lbl">kitsune-os v5.4 — architecture.overview</span>
+        <span class="arch-lbl">kitsune-os v6.1 — architecture.overview</span>
       </div>
       <div class="arch-body">
         <div class="arch-layer al-c">
@@ -353,23 +353,24 @@
           </ul>
         </div>
         <div class="arch-layer al-b">
-          <div class="arch-layer-lbl">Inbox Operations</div>
+          <div class="arch-layer-lbl">Inbox Operations V6.1</div>
           <ul>
-            <li>Autonomous background Gmail scanner</li>
-            <li>Cognitive rejection vs. human-contact detection</li>
-            <li>Direct SSoT status injection (col E)</li>
-            <li>Silent Kill Mode — zero-noise rejection flow</li>
-            <li>Label management + archival triggers</li>
+            <li>Inverted Discovery — Gmail-driven, not SSoT-driven</li>
+            <li>ATS sender detection (Workday, LinkedIn, Lever, Greenhouse)</li>
+            <li>Lenient domain match + token-based fallback</li>
+            <li>Stop-words filter (eliminates false positives on generic tokens)</li>
+            <li>Silent Kill Mode · Cost cap (3 PLN per scan)</li>
+            <li>Orphan detection · Inbox Zero discipline</li>
           </ul>
         </div>
         <div class="arch-layer al-g">
-          <div class="arch-layer-lbl">Persistence Layer</div>
+          <div class="arch-layer-lbl">Persistence + Dashboard V6.0</div>
           <ul>
             <li>Google Sheets: SSoT Master Log, 11-col schema</li>
             <li>Google Docs: Full-fidelity analysis reports</li>
             <li>Google Drive: Archive via safeMoveFile()</li>
-            <li>Live KPI dashboard: conversion rate, pipeline</li>
-            <li>5-state data validation enforcement</li>
+            <li>Standalone HTML Dashboard — KPIs · Status/SLA · client-side filtering</li>
+            <li>Router pattern (?view=dash) · cross-view navigation · mobile-responsive</li>
           </ul>
         </div>
       </div>
@@ -504,6 +505,71 @@
   </div>
 </div>
 
+  <!-- SCREENSHOTS -->
+<section id="screenshots" style="background: var(--bg-base);">
+  <div class="wrapper">
+    <div class="sec-hdr reveal">
+      <div class="sec-lbl">Production UI</div>
+      <h2 class="sec-title">System in Operation</h2>
+    </div>
+    <div class="reveal" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 24px; margin-top: 32px;">
+
+      <div style="background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+        <img src="assets/screenshot-01-dashboard.png"
+             alt="Kitsune Dashboard V6.0 — KPI grid, Status/SLA table, real-time filtering"
+             loading="lazy"
+             style="width:100%; display:block; border-bottom: 1px solid var(--border);">
+        <div style="padding: 20px;">
+          <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--cyan); margin-bottom:8px;">Dashboard V6.0</div>
+          <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">SSoT-Driven Operations Console</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">Standalone HTML web app. Real-time KPIs computed client-side from SSoT. Status/SLA logic ported 1:1 from GAS. Instant filtering, no round-trips.</div>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+        <img src="assets/screenshot-02-deep-dive.png"
+             alt="Kitsune Main App — Stage 2 Cognitive Deep Dive output with bsBingo, gapAnalysis, redFlags"
+             loading="lazy"
+             style="width:100%; display:block; border-bottom: 1px solid var(--border);">
+        <div style="padding: 20px;">
+          <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); margin-bottom:8px;">Main App · Stage 2</div>
+          <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Cognitive Deep Dive</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">One-shot LLM call producing 6 analytical sections. bsBingo decoder, gap analysis, red flags, executive interview questions, cover-letter-ready cognitive note, final verdict.</div>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+        <img src="assets/screenshot-03-gmail-labels.png"
+             alt="Gmail Inbox Zero — Kitsune labels structure with Recruitment, Orphan, Unrelated"
+             loading="lazy"
+             style="width:100%; display:block; border-bottom: 1px solid var(--border);">
+        <div style="padding: 20px;">
+          <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--green); margin-bottom:8px;">Gmail Scanner V6.1</div>
+          <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">Inbox Zero Discipline</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">Inverted Discovery scanner produces clean label hierarchy. Recruitment (auto-archived), Orphan (yellow, requires action), Unrelated (gray, processed but visible). Real Inbox Zero, not just demo.</div>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-panel); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+        <img src="assets/screenshot-04-ssot-sheet.png"
+             alt="Google Sheet SSoT Master Log — 11-column schema, status validation, color-coded states"
+             loading="lazy"
+             style="width:100%; display:block; border-bottom: 1px solid var(--border);">
+        <div style="padding: 20px;">
+          <div style="font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-bottom:8px;">Persistence Layer</div>
+          <div style="font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:var(--white); margin-bottom:8px;">SSoT Master Log</div>
+          <div style="font-size:12px; color:var(--text-muted); line-height:1.5;">11-column schema with data validation. Date · Company · Position · Architect Decision · Market Status · URLs · Cognitive Verdict · Archive · Meeting Link · Agent Status. Full audit trail.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="reveal" style="margin-top: 28px; text-align: center; font-size: 11px; color: var(--text-muted); font-style: italic;">
+      🎬 Full architecture walkthrough video — coming soon
+    </div>
+  </div>
+</section>
+  
 <!-- ROADMAP -->
 <section id="roadmap">
   <div class="wrapper">
@@ -512,9 +578,11 @@
       <h2 class="sec-title">What's Next</h2>
     </div>
     <div class="rm-grid reveal">
-      <div class="rm-item rm-done"><div class="rm-ver">V5.4</div><div class="rm-name">Core SSoT · Dual-Stage Analysis · Inbox Operations · Defense-in-Depth · Duplicate Guard</div><span class="rm-status">✓ Stable</span></div>
-      <div class="rm-item rm-wip"><div class="rm-ver">V6.0</div><div class="rm-name">Standalone Web Dashboard — off GAS, improved scalability, visual KPI layer</div><span class="rm-status">Active Development</span></div>
-      <div class="rm-item rm-plan"><div class="rm-ver">V6.1</div><div class="rm-name">Native Auto-Drafting Engine — autonomous, context-aware responses to recruiter communications</div><span class="rm-status">Planned</span></div>
+      <div class="rm-item rm-done"><div class="rm-ver">V5.4</div><div class="rm-name">Core SSoT · Dual-Stage Analysis · Inbox Operations V1 · Defense-in-Depth · One-Shot Stage 2</div><span class="rm-status">✓ Stable</span></div>
+      <div class="rm-item rm-done"><div class="rm-ver">V6.0</div><div class="rm-name">Standalone HTML Web Dashboard · Router pattern · Cross-view navigation · Mobile-responsive</div><span class="rm-status">✓ Stable</span></div>
+      <div class="rm-item rm-done"><div class="rm-ver">V6.1</div><div class="rm-name">Inverted Discovery Scanner · ATS detection · Lenient domain match · Stop-words filter · Cost cap · Dashboard inline scan</div><span class="rm-status">✓ Stable</span></div>
+      <div class="rm-item rm-plan"><div class="rm-ver">V6.2</div><div class="rm-name">Auto-Drafts Engine — autonomous recruiter response drafts based on SSoT context and SLA triggers</div><span class="rm-status">Planned</span></div>
+      <div class="rm-item rm-rnd"><div class="rm-ver">V6.3</div><div class="rm-name">Smart Stage 1 fallback · UNRELATED noise distinction · Notification badge in Main App</div><span class="rm-status">R&D</span></div>
     </div>
     </div>
   </div>
@@ -546,7 +614,7 @@
 <footer>
   <div class="wrapper">
     <div class="ft">
-      <div class="ft-l"><strong>🦊 Kitsune-OS V5.4</strong> — Built by Piotr Stachurski · Q1–Q2 2026</div>
+            <div class="ft-l"><strong>🦊 Kitsune-OS V6.1</strong> — Built by Piotr Stachurski · Q2 2026</div>
       <div class="ft-r">Google Workspace · Gemini API · Zero Infrastructure Cost</div>
     </div>
   </div>
